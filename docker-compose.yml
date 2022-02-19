@@ -17,7 +17,7 @@ services:
       - 4317:4317
 
   sound-supervisor:
-    build: 
+    build:
       context: .
       dockerfile: ./core/sound-supervisor/Dockerfile.template
     network_mode: host
@@ -72,4 +72,14 @@ services:
     labels:
       io.balena.features.supervisor-api: 1
     environment:
-      SET_HOSTNAME: balena
+      SET_HOSTNAME: bitoku
+
+  api:
+    build: ./plugins/api
+
+  proxy:
+    build: ./plugins/proxy
+    depends_on:
+      - api
+    ports:
+      - 80:8080

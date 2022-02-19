@@ -1,0 +1,12 @@
+FROM node:alpine3.14
+
+COPY package.json ./
+
+RUN npm install
+
+COPY . ./
+
+ENTRYPOINT [ "npm" ]
+CMD [ "start" ]
+
+EXPOSE 9000
